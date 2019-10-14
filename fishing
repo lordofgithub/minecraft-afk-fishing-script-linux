@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Grab Minecraft window id
+winid=$(xwininfo -tree -root | grep "Minecraft 1.14.4" | awk '{ print $1 }')
+
+# Check if window id does not exist (i.e. Minecraft is not currently running)
+if [[ -z "$winid" || "$winid" == "Binary" ]]; then
+	echo 'No Minecraft instance opened.'
+	exit
+fi
+
+# Run repeated right-clicking action
+xdotool mousedown --window $winid 3
