@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Grab Minecraft window id
-winid=$(xwininfo -tree -root | grep "Minecraft 1.14.4" | awk '{ print $1 }')
+# Grab active game window id
+winid=$(xwininfo -tree -root | grep "Minecraft" | tail -1 | awk '{ print $1 }')
 
 # Check if window id does not exist (i.e. Minecraft is not currently running)
 if [ -z "$winid" ] || [ "$winid" = "Binary" ]; then
